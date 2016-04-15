@@ -1,0 +1,6 @@
+[package]
+name = "neuraltest"
+version = "0.1.0"
+authors = ["Daniel Wood <daniel.a.wood.jr@gmail.com>"]
+
+[dependencies]
