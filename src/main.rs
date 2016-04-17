@@ -1,19 +1,29 @@
+extern crate rand;
+
 use std::f64;
+use rand::Rng;
 
 fn main() {
   let e = f64::consts::E;
-  let pi: f64 = f64::consts::PI;
-  //let e = 1 as f64;
-  let a: [f64; 4] = [0.0, 0.2, 0.5, 1.0];
-  //let a = [1, 9, 21];
-  for &n in &a {
-    let nn: f64 = -1.0 * (n/2.0);
-    let tip: f64 = nn.powi(2);
-    let top: f64 = e.powf(tip);
-    let bottom: f64 = 2.0 * pi;
-    let result: f64 = top.powf(tip)/bottom;
-
-    println!("Gaussed {}: {:?}", n, result);
-  }
   println!("E: {}", e);
+
+  let max = 1000;
+  let pi: f64 = f64::consts::PI;
+  let a: [f64; 4] = [
+      rand::thread_rng().gen_range(0, max) as f64, 
+      rand::thread_rng().gen_range(0, max) as f64, 
+      rand::thread_rng().gen_range(0, max) as f64, 
+      rand::thread_rng().gen_range(0, max) as f64,
+  ];
+
+  for &n in &a {
+    let n2 = n/(max as f64);
+    let nn = -1.0 * (n2/2.0);
+    let tip = nn.powi(2);
+    let top = e.powf(tip);
+    let bottom = 2.0 * pi;
+    let result = top.powf(tip)/bottom;
+
+    println!("Gaussed {}: {:?}", n2, result);
+  }
 }
